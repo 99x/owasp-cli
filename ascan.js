@@ -1,22 +1,22 @@
 var ClientApi = require('./clientapi');
 var clientapi = new ClientApi(this.config);
 
-function Spider(config) {
+function Ascan(config) {
 	this.config = config;
 }
 
-Spider.prototype.scan = function scan() {
+Ascan.prototype.scan = function scan() {
 	var parasms = {
 	};
 
 	return clientapi.callApi(params);
 };
 
-Spider.prototype.status = function status() {
+Ascan.prototype.status = function status() {
 	var params = {
 	};
 
 	return clientapi.callApi(params);
 };
 
-module.exports = Spider;
+module.exports = Ascan;

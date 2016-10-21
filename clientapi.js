@@ -16,8 +16,6 @@ ClientApi.prototype.callApi = function callApi(params) {
 };
 
 function buildUrl(config, params) {
-	console.log(config.target);
-	console.log(params.action);
 	return "http://localhost:8080/JSON/spider/view/scans/?zapapiformat=JSON&apikey=99xopenhack";
 };
 

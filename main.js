@@ -14,7 +14,7 @@ var config = {
 
 var spider = new Spider(config);
 
-var result = spider.viewScans().then(
+var result = spider.status().then(
 			function (result) {
 				console.log(result);
 			},
