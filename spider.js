@@ -6,10 +6,27 @@ function Spider(config) {
 }
 
 Spider.prototype.scan = function scan() {
-	var parasms = {
-	};
+	var params = [{
+      key:"apikey",
+      value :this.config.apiKey   
+     },
+     {
+      key:"url",
+      value :this.config.target  
+     },
+      {
+      key:"maxChildren",
+      value :""   
+     }
+	 
+  ];
+  this.config.component="spider";
+  this.config.operationType="action";
+  this.config.operationname="scan";
+  this.config.params = params;
 
-	return clientapi.callApi(params);
+
+	return clientapi.callApi(this.config);
 };
 
 Spider.prototype.status = function status() {
