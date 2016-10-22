@@ -1,33 +1,75 @@
 var fs = require('fs');
 
+var Context = require('./context');
 var Spider = require('./spider');
 var AjaxSpider = require('./ajaxspider');
 var Ascan = require('./ascan');
 var Core = require('./core');
 
-var target = "http://www.99xtechnology.com/";
+var target = "http://www.example.com/";
 var host = "localhost";
 var port = "8080";
 var apiKey = "99xopenhack";
 var format = "json";
 
+//TODO: add form authentication args
 var context = "node-owsap-test";
+var urlToIncludeInContext = "http://www.example.com/";
+var isFormsAuthenticationSupported = true;
 
 var config = {
 	target: target,
 	host: host,
 	port: port,
 	apiKey: apiKey,
-	format: format
+	format: format,
+	context: context,
+	urlToIncludeInContext: urlToIncludeInContext,
+	isFormsAuthenticationSupported: isFormsAuthenticationSupported
 };
 
+var context = new Context(config);
 var spider = new Spider(config);
 var ajaxSpider = new AjaxSpider(config);
 var ascan = new Ascan(config);
 var core = new Core(config);
 
 var interval;
-SpiderScan();
+Start();
+
+function Start() {
+	// TODO: handle form authentication
+	if (false) {
+		CreateContext();
+	} else {
+		SpiderScan();
+	}
+}
+
+function CreateContext() {
+	console.log("Creating context...");
+	context.newContext().then(
+				function (result) {
+					console.log(result);
+					console.log("Context created.\n");
+					IncludeInContext();
+				},
+				function (error) {
+					console.log(error);
+				});
+}
+
+function IncludeInContext() {
+	console.log("Adding include in context...");
+	context.includeInContext().then(
+				function (result) {
+					console.log(result);
+					console.log("Include in context added.");
+				},
+				function (error) {
+					console.log(error);
+				});
+}
 
 function SpiderScan() {
 	console.log("Spider scanning...");
@@ -54,6 +96,7 @@ function CheckSpiderScanStatus(scanId) {
 				},
 				function (error) {
 					console.log(error);
+					clearInterval(interval);
 				});
 }
 
@@ -84,6 +127,7 @@ function CheckAjaxSpiderScanStatus() {
 				},
 				function (error) {
 					console.log(error);
+					clearInterval(interval);
 				});
 }
 
@@ -111,6 +155,7 @@ function CheckActiveScannStatus(scanId) {
 				},
 				function (error) {
 					console.log(error);
+					clearInterval(interval);
 				});
 }
 

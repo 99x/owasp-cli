@@ -26,4 +26,29 @@ Context.prototype.newContext = function scan() {
 	return clientapi.callApi(this.config);
 };
 
+Context.prototype.includeInContext = function scan() {
+	var params = [
+		{
+			key: "apikey",
+			value: this.config.apiKey
+		},
+		{
+			key: "contextName",
+			value: this.config.contextName
+		},
+		{
+			key: "regex",
+			value: this.config.urlToIncludeInContext
+		}
+	];
+
+	this.config.format = "json";
+	this.config.component = "context";
+	this.config.operationType = "action";
+	this.config.operationname = "includeInContext";
+	this.config.params = params;
+
+	return clientapi.callApi(this.config);
+};
+
 module.exports = Context;
