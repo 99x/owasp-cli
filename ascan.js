@@ -6,17 +6,58 @@ function Ascan(config) {
 }
 
 Ascan.prototype.scan = function scan() {
-	var parasms = {
-	};
+	var params = [
+		{
+			key: "apikey",
+			value: this.config.apiKey
+		},
+      {
+      	key: "url",
+      	value: this.config.target
+      },
+      {
+      	key: "recurse",
+      	value: ""
+      },
+		{
+			key: "inScopeOnly",
+			value: ""
+		},
+      {
+      	key: "scanPolicyName",
+      	value: ""
+      },
+      {
+      	key: "method",
+      	value: ""
+      },
+		{
+			key: "postData",
+			value: ""
+		}
+	];
 
-	return clientapi.callApi(params);
+	this.config.component = "ascan";
+	this.config.operationType = "action";
+	this.config.operationname = "scan";
+	this.config.params = params;
+
+	return clientapi.callApi(this.config);
 };
 
-Ascan.prototype.status = function status() {
-	var params = {
-	};
+Ascan.prototype.status = function status(scanId) {
+	var params = [
+		{
+			key: "scanId",
+			value: scanId
+		}
+	];
 
-	return clientapi.callApi(params);
+	this.config.component = "ascan";
+	this.config.operationType = "view";
+	this.config.operationname = "status";
+
+	return clientapi.callApi(this.config);
 };
 
 module.exports = Ascan;
