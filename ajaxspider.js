@@ -6,17 +6,35 @@ function AjaxSpider(config) {
 }
 
 AjaxSpider.prototype.scan = function scan() {
-	var parasms = {
-	};
+	var params = [
+		{
+			key: "apikey",
+			value: this.config.apiKey
+		},
+      {
+      	key: "url",
+      	value: this.config.target
+      },
+      {
+      	key: "inScope",
+      	value: ""
+      }
+	];
 
-	return clientapi.callApi(params);
+	this.config.component = "ajaxSpider";
+	this.config.operationType = "action";
+	this.config.operationname = "scan";
+	this.config.params = params;
+
+	return clientapi.callApi(this.config);
 };
 
 AjaxSpider.prototype.status = function status() {
-	var params = {
-	};
+	this.config.component = "ajaxSpider";
+	this.config.operationType = "view";
+	this.config.operationname = "status";
 
-	return clientapi.callApi(params);
+	return clientapi.callApi(this.config);
 };
 
 module.exports = AjaxSpider;
