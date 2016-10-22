@@ -1,0 +1,34 @@
+{
+  "name": "zap-api-node",
+  "version": "1.0.0",
+  "description": "OWASP ZAP Node API",
+  "main": "app.js",
+  "scripts": {
+    "test": "./node_modules/jshint/bin/jshint test.js",
+    "start": "nodemon ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/99xt/owasp-cli.git"
+  },
+  "keywords": [
+    "zap-api-node",
+    "owasp-zap",
+    "security-testing"
+  ],
+  "author": "99X Technology",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/99xt/owasp-cli/issues"
+  },
+  "homepage": "https://github.com/99xt/owasp-cli#readme",
+  "devDependencies": {
+    "jshint": "^2.9.4"
+  },
+  "dependencies": {
+    "express-generator": "^4.13.4",
+    "socket.io": "^1.5.0",
+    "debug": "~2.2.0",
+    "express": "~4.13.4"
+  }
+}
